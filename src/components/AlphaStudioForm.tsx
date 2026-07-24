@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/lib/LanguageContext";
 
 type FormData = {
+  servicio: string;
   nombre: string;
   marca: string;
   negocio: string;
@@ -22,14 +23,22 @@ type FormData = {
   mensaje: string;
 };
 
+const SERVICIOS = [
+  { id: "Alpha Studio", label: "Alpha Studio", desc: "Creación y producción de contenido para tu marca" },
+  { id: "Alpha Systems", label: "Alpha Systems", desc: "Automatización, CRM y sistemas para negocios digitales" },
+  { id: "UGC Creator", label: "UGC Creator", desc: "Videos UGC auténticos para campañas y ads" },
+  { id: "Dirección Creativa", label: "Dirección Creativa", desc: "Dirección de contenido, narrativa y estética de marca" },
+];
+
 const empty: FormData = {
-  nombre: "", marca: "", negocio: "", instagram: "", whatsapp: "", email: "",
+  servicio: "", nombre: "", marca: "", negocio: "", instagram: "", whatsapp: "", email: "",
   presenciaRedes: "", identidadVisual: "", estrategia: "",
   obstaculo: "", intentoPrevio: "", tiempoProblema: "",
   urgencia: "", presupuesto: "", mensaje: "",
 };
 
 const stepFields = [
+  ["servicio"],
   ["nombre", "marca", "negocio", "instagram", "whatsapp", "email"],
   ["presenciaRedes", "identidadVisual", "estrategia"],
   ["obstaculo", "intentoPrevio", "tiempoProblema"],
@@ -141,10 +150,10 @@ export default function AlphaStudioForm() {
 
               <div style={{ marginTop: "1rem", padding: "1.5rem", border: "1px solid rgba(39,66,255,0.2)", backgroundColor: "rgba(39,66,255,0.04)" }}>
                 <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.8rem", letterSpacing: "0.05em", color: "var(--white)", marginBottom: "0.25rem" }}>
-                  ALPHA STUDIO<span style={{ color: "var(--blue)" }}>.</span>
+                  NAHUELCONTENT<span style={{ color: "var(--blue)" }}>.</span>
                 </p>
                 <p style={{ fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gray-text)" }}>
-                  Content Strategy · Creative Direction
+                  Alpha Studio · Alpha Systems · UGC · Creative Direction
                 </p>
               </div>
             </motion.div>
@@ -182,7 +191,37 @@ export default function AlphaStudioForm() {
                     transition={{ duration: 0.2 }}
                     style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
                   >
-                    {step === 0 && (<>
+                    {step === 0 && (
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                        <label style={{ fontSize: "0.75rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--gray-text)", fontWeight: 500, marginBottom: "0.25rem" }}>
+                          ¿Con qué servicio querés trabajar? <span style={{ color: "var(--blue)" }}>*</span>
+                        </label>
+                        {SERVICIOS.map((s) => (
+                          <button
+                            key={s.id}
+                            type="button"
+                            onClick={() => set("servicio")(s.id)}
+                            style={{
+                              padding: "1rem 1.25rem",
+                              textAlign: "left",
+                              border: `1px solid ${data.servicio === s.id ? "var(--blue)" : "rgba(255,255,255,0.1)"}`,
+                              backgroundColor: data.servicio === s.id ? "rgba(39,66,255,0.1)" : "transparent",
+                              color: "var(--white)",
+                              cursor: "pointer",
+                              transition: "all 0.15s",
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "0.3rem",
+                            }}
+                          >
+                            <span style={{ fontWeight: 600, fontSize: "0.9rem", letterSpacing: "0.04em" }}>{s.label}</span>
+                            <span style={{ fontSize: "0.75rem", color: "var(--gray-text)", lineHeight: 1.4 }}>{s.desc}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
+                    {step === 1 && (<>
                       <Field label="Nombre" name="nombre" value={data.nombre} onChange={set("nombre")} />
                       <Field label="Marca o negocio" name="marca" value={data.marca} onChange={set("marca")} />
                       <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -196,7 +235,7 @@ export default function AlphaStudioForm() {
                       <Field label="Email" name="email" value={data.email} onChange={set("email")} type="email" />
                     </>)}
 
-                    {step === 1 && (<>
+                    {step === 2 && (<>
                       <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                         <label style={{ fontSize: "0.75rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--gray-text)", fontWeight: 500 }}>¿Tu marca tiene presencia en redes sociales? <span style={{ color: "var(--blue)" }}>*</span></label>
                         <ChipGroup value={data.presenciaRedes} onChange={set("presenciaRedes")} options={["Sí, activa y constante", "Sí, pero publico de forma irregular", "Tengo perfil pero casi no publico", "No tengo presencia en redes todavía"]} />
@@ -211,7 +250,7 @@ export default function AlphaStudioForm() {
                       </div>
                     </>)}
 
-                    {step === 2 && (<>
+                    {step === 3 && (<>
                       <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                         <label style={{ fontSize: "0.75rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--gray-text)", fontWeight: 500 }}>¿Cuál es el mayor obstáculo de tu marca ahora mismo? <span style={{ color: "var(--blue)" }}>*</span></label>
                         <ChipGroup value={data.obstaculo} onChange={set("obstaculo")} options={["No sé qué contenido crear o qué decir", "Publico pero no genera consultas ni ventas", "No tengo tiempo para gestionar el contenido", "Mi marca no se ve profesional ni coherente", "No sé cómo diferenciarme de la competencia", "Todo lo anterior aplica"]} />
@@ -226,7 +265,7 @@ export default function AlphaStudioForm() {
                       </div>
                     </>)}
 
-                    {step === 3 && (<>
+                    {step === 4 && (<>
                       <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                         <label style={{ fontSize: "0.75rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--gray-text)", fontWeight: 500 }}>¿Qué tan urgente es resolver esto? <span style={{ color: "var(--blue)" }}>*</span></label>
                         <ChipGroup value={data.urgencia} onChange={set("urgencia")} options={["Lo necesito ya, es prioridad ahora mismo", "Quiero arrancar este mes", "En los próximos meses", "Solo estoy viendo opciones por ahora"]} />

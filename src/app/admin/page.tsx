@@ -6,6 +6,7 @@ type Lead = {
   id: string;
   createdAt: string;
   updatedAt?: string;
+  servicio: string;
   nombre: string;
   marca: string;
   negocio: string;
@@ -133,7 +134,7 @@ export default function AdminPage() {
         <style>{`@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Bebas+Neue&display=swap');*{box-sizing:border-box;margin:0;padding:0}`}</style>
         <form onSubmit={(e) => { e.preventDefault(); fetchLeads(password); }} style={{ width: "100%", maxWidth: "340px", padding: "2.5rem", border: `1px solid ${S.border}` }}>
           <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.8rem", color: S.white, letterSpacing: "0.05em", lineHeight: 1, marginBottom: "0.25rem" }}>
-            ALPHA STUDIO<span style={{ color: S.blue }}>.</span>
+            NAHUELCONTENT<span style={{ color: S.blue }}>.</span>
           </p>
           <p style={{ fontSize: "0.55rem", letterSpacing: "0.18em", textTransform: "uppercase", color: S.gray, marginBottom: "2rem" }}>CRM / Dashboard</p>
           <label style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: S.gray, display: "block", marginBottom: "0.5rem" }}>Contraseña</label>
@@ -158,7 +159,7 @@ export default function AdminPage() {
       <div style={{ padding: "1rem 1.5rem", borderBottom: `1px solid ${S.border}`, display: "flex", alignItems: "center", justifyContent: "space-between", backgroundColor: "rgba(8,8,8,0.96)", backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 20 }}>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.2rem", letterSpacing: "0.05em", lineHeight: 1 }}>
-            ALPHA STUDIO<span style={{ color: S.blue }}>.</span>
+            NAHUELCONTENT<span style={{ color: S.blue }}>.</span>
           </p>
           <span style={{ fontSize: "0.55rem", letterSpacing: "0.15em", textTransform: "uppercase", color: S.gray, borderLeft: `1px solid ${S.border}`, paddingLeft: "1rem" }}>CRM</span>
         </div>
@@ -201,8 +202,8 @@ export default function AdminPage() {
           ) : (
             <div style={{ border: `1px solid ${S.border}` }}>
               {/* Table header */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 140px 100px 130px 140px", padding: "0.75rem 1.25rem", borderBottom: `1px solid ${S.border}`, backgroundColor: S.surface }}>
-                {["NOMBRE", "TELÉFONO", "SCORE", "NIVEL", "ESTADO"].map((h) => (
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 150px 140px 100px 130px 140px", padding: "0.75rem 1.25rem", borderBottom: `1px solid ${S.border}`, backgroundColor: S.surface }}>
+                {["NOMBRE", "SERVICIO", "TELÉFONO", "SCORE", "NIVEL", "ESTADO"].map((h) => (
                   <span key={h} style={{ fontSize: "0.55rem", letterSpacing: "0.15em", textTransform: "uppercase", color: S.gray }}>{h}</span>
                 ))}
               </div>
@@ -210,7 +211,7 @@ export default function AdminPage() {
               {filtered.map((lead) => (
                 <div key={lead.id}
                   onClick={() => selectLead(lead)}
-                  style={{ display: "grid", gridTemplateColumns: "1fr 140px 100px 130px 140px", padding: "1rem 1.25rem", borderBottom: `1px solid ${S.border}`, cursor: "pointer", backgroundColor: selected?.id === lead.id ? "#111" : "transparent", borderLeft: selected?.id === lead.id ? `2px solid ${S.blue}` : "2px solid transparent", transition: "background-color 0.15s", alignItems: "center" }}
+                  style={{ display: "grid", gridTemplateColumns: "1fr 150px 140px 100px 130px 140px", padding: "1rem 1.25rem", borderBottom: `1px solid ${S.border}`, cursor: "pointer", backgroundColor: selected?.id === lead.id ? "#111" : "transparent", borderLeft: selected?.id === lead.id ? `2px solid ${S.blue}` : "2px solid transparent", transition: "background-color 0.15s", alignItems: "center" }}
                   onMouseEnter={(e) => { if (selected?.id !== lead.id) e.currentTarget.style.backgroundColor = "#0d0d0d"; }}
                   onMouseLeave={(e) => { if (selected?.id !== lead.id) e.currentTarget.style.backgroundColor = "transparent"; }}
                 >
@@ -218,6 +219,9 @@ export default function AdminPage() {
                     <p style={{ fontWeight: 500, fontSize: "0.875rem", marginBottom: "0.2rem" }}>{lead.nombre}</p>
                     <p style={{ fontSize: "0.7rem", color: S.gray }}>{lead.marca}</p>
                   </div>
+                  <span style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: S.blue, alignSelf: "center" }}>
+                    {lead.servicio || "—"}
+                  </span>
                   <p style={{ fontSize: "0.8rem", color: S.gray }}>{lead.whatsapp || "—"}</p>
                   <div style={{ display: "flex", alignItems: "baseline", gap: "0.25rem" }}>
                     <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.6rem", lineHeight: 1, color: lead.color }}>{lead.score}</span>
@@ -305,6 +309,12 @@ export default function AdminPage() {
               {/* Divider + quick info */}
               <div style={{ borderTop: `1px solid ${S.border}`, paddingTop: "1.25rem" }}>
                 <p style={{ fontSize: "0.55rem", letterSpacing: "0.15em", textTransform: "uppercase", color: S.gray, marginBottom: "0.75rem" }}>// DATOS DEL LEAD</p>
+                {selected.servicio && (
+                  <div style={{ padding: "0.75rem 1rem", marginBottom: "0.75rem", backgroundColor: "rgba(39,66,255,0.08)", border: "1px solid rgba(39,66,255,0.2)" }}>
+                    <p style={{ fontSize: "0.5rem", letterSpacing: "0.12em", textTransform: "uppercase", color: S.blue, marginBottom: "0.25rem" }}>Servicio de interés</p>
+                    <p style={{ fontSize: "0.9rem", fontWeight: 600, color: S.white }}>{selected.servicio}</p>
+                  </div>
+                )}
                 {[
                   { k: "Marca", v: selected.marca },
                   { k: "Negocio", v: selected.negocio },
