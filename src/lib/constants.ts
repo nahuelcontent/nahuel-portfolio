@@ -1,143 +1,66 @@
 // ─── EDIT YOUR CONTENT HERE ────────────────────────────────────────────────
-// This file centralizes all text, numbers, links and colors so you can update
-// the landing without touching individual components.
 
 export const PERSONAL = {
   name: "NAHUEL",
   fullName: "Nahuel Recabarren",
-  title: "Creative Strategist · Content Director",
-  tagline:
-    "Creative Strategist focused on content direction, brand positioning and digital communication systems.",
-  intro:
-    "I help brands and professionals turn experience, ideas and services into clear, intentional and high-performing content.",
+  title: "Creative Director · UGC Creator",
   email: "nahuelcontent@gmail.com",
   phone: "+54 9 221 595 6501",
+  whatsapp: "5492215956501", // without + for wa.me link
   location: "Buenos Aires, Argentina",
   linkedinHandle: "nahuel-recabarren",
   linkedinUrl: "https://www.linkedin.com/in/nahuel-recabarren",
-  cvUrl: "/nahuel-recabarren-cv.pdf", // drop your PDF in /public/
+  instagramHandle: "nahuelcontent",
+  instagramUrl: "https://www.instagram.com/nahuelcontent/",
+  cvUrl: "/nahuel-recabarren-cv.pdf",
 };
 
-export const IMPACT = [
-  { value: "4+", label: "years", description: "working in content, branding and digital marketing" },
-  { value: "15+", label: "brands", description: "supported across content, identity and communication" },
-  { value: "1000+", label: "assets", description: "created across reels, carousels, stories, ads and landing pages" },
-  { value: "ARG + USA", label: "", description: "experience studying and working across different creative environments" },
+// ─── INSTAGRAM REELS ───────────────────────────────────────────────────────
+// Replace these IDs with your actual reel IDs.
+// To get the ID: open a reel on Instagram → copy URL
+// e.g. https://www.instagram.com/reel/ABC123xyz/ → ID is "ABC123xyz"
+export const INSTAGRAM_REELS = [
+  "C5example1AA", // TODO: replace with real reel ID
+  "C5example2BB", // TODO: replace with real reel ID
+  "C5example3CC", // TODO: replace with real reel ID
 ];
 
-export const SERVICES = [
+// ─── PROJECTS ──────────────────────────────────────────────────────────────
+export const PROJECTS = [
   {
-    number: "01",
-    title: "Content Strategy",
-    description:
-      "Monthly content systems, editorial direction, audience research and platform-specific planning.",
+    id: "alpha-studio",
+    name: "Alpha Studio",
+    tagline: { en: "Content strategy & creative direction for brands", es: "Estrategia de contenido y dirección creativa para marcas" },
+    description: { en: "We build monthly content systems for brands that want to position themselves with intention — not just post.", es: "Construimos sistemas de contenido mensuales para marcas que quieren posicionarse con intención, no solo publicar." },
+    url: "https://alphastudioservice.netlify.app/",
+    cta: { en: "Learn more", es: "Ver más" },
+    tag: "Agency",
   },
   {
-    number: "02",
-    title: "Creative Direction",
-    description:
-      "Concept development, visual direction, storytelling, campaign ideas and content production guidance.",
+    id: "alpha-system",
+    name: "Alpha System",
+    tagline: { en: "Digital sales systems for businesses", es: "Sistemas digitales de venta para negocios" },
+    description: { en: "Landing pages, CRMs and e-commerce stores. Turn your leads from WhatsApp chaos into an organized sales pipeline.", es: "Landings, CRMs y e-commerce. Convertí tus leads del caos de WhatsApp en un pipeline de ventas organizado." },
+    url: "https://alphasystems.vercel.app/",
+    cta: { en: "Learn more", es: "Ver más" },
+    tag: "Systems",
   },
   {
-    number: "03",
-    title: "Brand Positioning",
-    description:
-      "Helping brands clarify their message, tone, perception and digital identity.",
+    id: "insync",
+    name: "InSync",
+    tagline: { en: "Your external marketing team in Argentina", es: "Tu equipo de marketing externo en Argentina" },
+    description: { en: "Meta Ads, landing pages and creative direction under one roof. Monthly billing, no long-term contracts.", es: "Meta Ads, landing pages y dirección creativa bajo un mismo techo. Facturación mensual, sin contrato a largo plazo." },
+    url: "https://in-sync.vercel.app/",
+    cta: { en: "Learn more", es: "Ver más" },
+    tag: "Marketing",
   },
   {
-    number: "04",
-    title: "Performance Content",
-    description:
-      "Combining organic content with Meta Ads logic, creative testing and metric-based optimization.",
+    id: "projump",
+    name: "ProJump",
+    tagline: { en: "6-week vertical jump program", es: "Programa de salto vertical de 6 semanas" },
+    description: { en: "For volleyball and basketball players. Structured strength, power and plyometric training. 3–8 cm guaranteed improvement.", es: "Para jugadores de vóley y básquet. Fuerza, potencia y pliometría estructurada. 3–8 cm de mejora garantizados." },
+    url: "https://projump.vercel.app/",
+    cta: { en: "Start now", es: "Empezar" },
+    tag: "Training · $25.000 ARS",
   },
-];
-
-export const EXPERIENCE = [
-  {
-    company: "Alpha Studio",
-    role: "Founder & Creative Strategist",
-    period: "2020 — Present",
-    location: "Buenos Aires, Argentina",
-    description:
-      "Founded and led Alpha Studio, a creative studio focused on content strategy, branding, social media systems and digital communication for brands in fashion, wellness, services and digital products.",
-    bullets: [
-      "Led content and communication strategies for multiple brands.",
-      "Developed monthly content systems to improve consistency and reduce operational friction.",
-      "Directed brand identity, social content and creative campaigns.",
-      "Managed clients, monthly planning and performance follow-up.",
-      "Integrated organic content with Meta Ads strategy to improve reach and conversion.",
-    ],
-    featured: true,
-  },
-  {
-    company: "Marketing Consultant & Web Designer",
-    role: "",
-    period: "2019 — 2022",
-    location: "Argentina & United States",
-    description:
-      "Worked with entrepreneurs and service-based businesses to design conversion-focused websites, landing pages and digital growth strategies.",
-    bullets: [
-      "Designed responsive websites and landing pages.",
-      "Defined visual direction for digital campaigns.",
-      "Conducted competitor research and growth analysis.",
-      "Helped small businesses structure their online presence.",
-    ],
-    featured: false,
-  },
-  {
-    company: "Freelance Content Manager & Social Media Designer",
-    role: "",
-    period: "2018 — 2019",
-    location: "",
-    description: "",
-    bullets: [
-      "Managed Instagram and Facebook accounts for small brands.",
-      "Designed visual content, templates and brand assets.",
-      "Planned content calendars and engagement strategies.",
-      "Executed basic Meta Ads campaigns and tracked results.",
-    ],
-    featured: false,
-  },
-];
-
-export const SKILLS = {
-  Strategy: [
-    "Content strategy",
-    "Brand positioning",
-    "Creative direction",
-    "Social media strategy",
-    "Meta Ads creative analysis",
-  ],
-  Execution: [
-    "Video editing",
-    "Graphic design",
-    "Visual storytelling",
-    "Copywriting",
-    "Content systems",
-  ],
-  Tools: [
-    "Meta Business Suite",
-    "Meta Ads Manager",
-    "Notion",
-    "Figma",
-    "Adobe Illustrator",
-    "Adobe Photoshop",
-    "Adobe InDesign",
-    "CapCut",
-    "Premiere Pro",
-    "Canva",
-  ],
-};
-
-export const EDUCATION = [
-  {
-    school: "Southern Virginia University",
-    country: "United States",
-    fields: ["Graphic Design", "Marketing", "Photography", "Computer Science"],
-  },
-];
-
-export const LANGUAGES = [
-  { language: "Spanish", level: "Native" },
-  { language: "English", level: "Advanced / C1" },
 ];
