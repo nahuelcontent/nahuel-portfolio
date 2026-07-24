@@ -1,6 +1,7 @@
 import { LanguageProvider } from "@/lib/LanguageContext";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Marquee from "@/components/Marquee";
 import CreativeDirection from "@/components/CreativeDirection";
 import UGCSection from "@/components/UGCSection";
 import Projects from "@/components/Projects";
@@ -14,8 +15,10 @@ export default function Home() {
       <main>
         <Navbar />
         <Hero />
+        <Marquee />
         <CreativeDirection />
         <UGCSection />
+        <Marquee />
         <Projects />
         <AlphaStudioForm />
         <Contact />

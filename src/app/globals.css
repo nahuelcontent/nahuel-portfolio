@@ -35,20 +35,17 @@ body {
   font-family: "Space Grotesk", sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  cursor: none;
 }
 
-.font-heading {
-  font-family: "Bebas Neue", sans-serif;
-  letter-spacing: 0.02em;
-}
+/* hide default cursor on interactive elements too */
+a, button { cursor: none; }
 
-/* ─── SELECTION ───────────────────────────────────────────────────────────── */
 ::selection {
   background-color: var(--blue);
   color: var(--white);
 }
 
-/* ─── SCROLLBAR ───────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: var(--black); }
 ::-webkit-scrollbar-thumb { background: var(--blue); }
@@ -88,16 +85,6 @@ body {
   }
 }
 
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -109,13 +96,14 @@ body {
   text-transform: uppercase;
   background-color: var(--blue);
   color: var(--white);
-  transition: background-color 0.2s ease;
-  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
   text-decoration: none;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
 }
 
 .btn-primary:hover {
   background-color: #1a2de0;
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -130,7 +118,6 @@ body {
   border: 1px solid rgba(245, 245, 240, 0.2);
   color: var(--white);
   transition: all 0.2s ease;
-  cursor: pointer;
   text-decoration: none;
 }
 
@@ -171,4 +158,66 @@ body {
 .grid-line {
   height: 1px;
   background-color: var(--gray-border);
+}
+
+/* ─── MARQUEE ─────────────────────────────────────────────────────────────── */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── CLIP REVEAL ─────────────────────────────────────────────────────────── */
+@keyframes clipReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0% 0 0); }
+}
+
+/* ─── GLOW ────────────────────────────────────────────────────────────────── */
+.glow-blue {
+  box-shadow: 0 0 40px rgba(39, 66, 255, 0.25), 0 0 80px rgba(39, 66, 255, 0.1);
+}
+
+/* ─── CURSOR ──────────────────────────────────────────────────────────────── */
+#cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--blue);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+#cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(39, 66, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, width 0.3s ease, height 0.3s ease, opacity 0.2s ease;
+}
+
+/* ─── NUMBER COUNTER ──────────────────────────────────────────────────────── */
+.stat-number {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 1;
+  color: var(--white);
+  letter-spacing: 0.02em;
 }
