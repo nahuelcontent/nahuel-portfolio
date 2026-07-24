@@ -4,31 +4,15 @@ import { motion } from "framer-motion";
 import { PERSONAL, INSTAGRAM_REELS } from "@/lib/constants";
 import { useLanguage } from "@/lib/LanguageContext";
 
-function ReelEmbed({ reelId }: { reelId: string }) {
-  const isPlaceholder = reelId.startsWith("C5example");
-
-  if (isPlaceholder) {
-    return (
-      <div style={{ width: "100%", aspectRatio: "9/16", backgroundColor: "#111", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "0.75rem", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="2" width="20" height="20" rx="5" stroke="var(--blue)" strokeWidth="1.5" />
-          <path d="M9.5 8.5l7 3.5-7 3.5V8.5z" fill="var(--blue)" />
-        </svg>
-        <span style={{ fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-text)", textAlign: "center", padding: "0 1rem" }}>
-          Replace reel ID<br />in constants.ts
-        </span>
-      </div>
-    );
-  }
-
+function ReelEmbed({ item }: { item: { id: string; type: string } }) {
   return (
     <div style={{ width: "100%", aspectRatio: "9/16", overflow: "hidden", border: "1px solid rgba(255,255,255,0.06)" }}>
       <iframe
-        src={`https://www.instagram.com/reel/${reelId}/embed/`}
+        src={`https://www.instagram.com/${item.type}/${item.id}/embed/`}
         style={{ width: "100%", height: "100%", border: "none" }}
         allowFullScreen
         loading="lazy"
-        title={`Instagram Reel ${reelId}`}
+        title={`Instagram ${item.type} ${item.id}`}
       />
     </div>
   );
@@ -79,10 +63,10 @@ export default function UGCSection() {
 
         {/* Reels grid */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }} className="reels-grid">
-          {INSTAGRAM_REELS.map((id, i) => (
-            <motion.div key={id + i}
+          {INSTAGRAM_REELS.map((item, i) => (
+            <motion.div key={item.id}
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
-              <ReelEmbed reelId={id} />
+              <ReelEmbed item={item} />
             </motion.div>
           ))}
         </div>

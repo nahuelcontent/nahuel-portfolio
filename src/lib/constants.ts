@@ -20,9 +20,9 @@ export const PERSONAL = {
 // To get the ID: open a reel on Instagram → copy URL
 // e.g. https://www.instagram.com/reel/ABC123xyz/ → ID is "ABC123xyz"
 export const INSTAGRAM_REELS = [
-  "C5example1AA", // TODO: replace with real reel ID
-  "C5example2BB", // TODO: replace with real reel ID
-  "C5example3CC", // TODO: replace with real reel ID
+  { id: "DRlIsTwiaFj", type: "p" },
+  { id: "DL8B8qrvHMm", type: "p" },
+  { id: "DYTZfJusdZl", type: "reel" },
 ];
 
 // ─── PROJECTS ──────────────────────────────────────────────────────────────
