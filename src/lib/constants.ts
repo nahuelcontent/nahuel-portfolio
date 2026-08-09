@@ -32,7 +32,7 @@ export const PROJECTS = [
     name: "Alpha Studio",
     tagline: { en: "Content strategy & creative direction for brands", es: "Estrategia de contenido y dirección creativa para marcas" },
     description: { en: "We build monthly content systems for brands that want to position themselves with intention — not just post.", es: "Construimos sistemas de contenido mensuales para marcas que quieren posicionarse con intención, no solo publicar." },
-    url: "https://alphastudioservice.netlify.app/",
+    url: "https://alpha-studio-bice.vercel.app/",
     cta: { en: "Learn more", es: "Ver más" },
     tag: "Agency",
   },
