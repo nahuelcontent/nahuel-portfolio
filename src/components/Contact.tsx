@@ -1,12 +1,98 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { PERSONAL } from "@/lib/constants";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const SERVICIOS = ["Dirección creativa", "UGC", "Fotografía o video", "Otro"];
+
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "0.875rem 1rem",
+  backgroundColor: "transparent",
+  border: "1px solid rgba(255,255,255,0.12)",
+  color: "var(--white)",
+  fontSize: "0.875rem",
+  outline: "none",
+  fontFamily: "inherit",
+  boxSizing: "border-box",
+  transition: "border-color 0.2s",
+};
+
+const labelStyle: React.CSSProperties = {
+  fontSize: "0.7rem",
+  letterSpacing: "0.1em",
+  textTransform: "uppercase",
+  color: "var(--gray-text)",
+  display: "block",
+  marginBottom: "0.5rem",
+};
+
+function validateContact(val: string): boolean {
+  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  const isPhone = /^\+?[\d\s\-()]{8,}$/.test(val);
+  return isEmail || isPhone;
+}
+
 export default function Contact() {
   const { tr } = useLanguage();
   const c = tr.contact;
+
+  const [form, setForm] = useState({ nombre: "", contacto: "", servicio: "", mensaje: "" });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  const validate = () => {
+    const e: Record<string, string> = {};
+    if (!form.nombre.trim()) e.nombre = "Nombre obligatorio";
+    if (!form.contacto.trim()) e.contacto = "Email o WhatsApp obligatorio";
+    else if (!validateContact(form.contacto)) e.contacto = "Ingresá un email válido o WhatsApp con al menos 8 dígitos";
+    if (!form.servicio) e.servicio = "Elegí un servicio";
+    return e;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+    setErrors({});
+    setStatus("sending");
+
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.contacto);
+    const payload = {
+      nombre: form.nombre,
+      marca: "",
+      negocio: form.servicio,
+      instagram: "",
+      whatsapp: isEmail ? "" : form.contacto,
+      email: isEmail ? form.contacto : "",
+      servicio: form.servicio,
+      mensaje: form.mensaje,
+      presenciaRedes: "",
+      identidadVisual: "",
+      estrategia: "",
+      obstaculo: "",
+      intentoPrevio: "",
+      tiempoProblema: "",
+      urgencia: "",
+      presupuesto: "",
+    };
+
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  };
 
   const rows = [
     { label: c.rows.email, value: PERSONAL.email, href: `mailto:${PERSONAL.email}` },
@@ -34,7 +120,6 @@ export default function Contact() {
 
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
               style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }} className="contact-btns">
-              {/* WhatsApp — primary */}
               <a href={`https://wa.me/${PERSONAL.whatsapp}`} target="_blank" rel="noopener noreferrer" className="btn-primary"
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.625rem" }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -47,12 +132,8 @@ export default function Contact() {
               <a href={PERSONAL.linkedinUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">{c.linkedin}</a>
             </motion.div>
 
-            {/* CV — secondary download */}
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }}
               style={{ marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-              <p style={{ fontSize: "0.75rem", color: "var(--gray-text)", marginBottom: "0.75rem" }}>
-                {c.downloadCv ? "Want to know more about me?" : ""}
-              </p>
               <a href={PERSONAL.cvUrl} download
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-text)", textDecoration: "none", transition: "color 0.2s" }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = "var(--white)"; }}
@@ -63,24 +144,105 @@ export default function Contact() {
             </motion.div>
           </div>
 
-          {/* Right — info rows */}
-          <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-            style={{ borderTop: "1px solid rgba(255,255,255,0.08)", alignSelf: "end" }}>
-            {rows.map((row) => (
-              <div key={row.label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.375rem 0", borderBottom: "1px solid rgba(255,255,255,0.08)", gap: "1rem" }}>
-                <span style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gray-text)", flexShrink: 0 }}>{row.label}</span>
-                {row.href ? (
-                  <a href={row.href} target={row.href.startsWith("http") ? "_blank" : undefined} rel={row.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    style={{ fontSize: "0.875rem", fontWeight: 500, color: "var(--white)", textDecoration: "none", transition: "color 0.2s", textAlign: "right" }}
-                    onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "var(--blue)"; }}
-                    onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "var(--white)"; }}>
-                    {row.value}
-                  </a>
-                ) : (
-                  <span style={{ fontSize: "0.875rem", color: "var(--white)", textAlign: "right" }}>{row.value}</span>
-                )}
+          {/* Right — Contact form */}
+          <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
+
+            {status === "success" ? (
+              <div style={{ padding: "3rem 2rem", border: "1px solid rgba(39,66,255,0.3)", backgroundColor: "rgba(39,66,255,0.05)", textAlign: "center", display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}>
+                <div style={{ width: "48px", height: "48px", borderRadius: "50%", backgroundColor: "rgba(39,66,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="var(--blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </div>
+                <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.8rem", color: "var(--white)", letterSpacing: "0.05em" }}>¡Gracias!</h3>
+                <p style={{ fontSize: "0.875rem", color: "var(--gray-text)", lineHeight: 1.65 }}>Te voy a contactar a la brevedad.</p>
               </div>
-            ))}
+            ) : (
+              <form onSubmit={handleSubmit} noValidate style={{ border: "1px solid rgba(255,255,255,0.08)", padding: "2rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+                <p style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--blue)", marginBottom: "0.25rem" }}>
+                  // ESCRIBIME DIRECTAMENTE
+                </p>
+
+                {/* Nombre */}
+                <div>
+                  <label style={labelStyle}>Nombre <span style={{ color: "var(--blue)" }}>*</span></label>
+                  <input
+                    type="text" value={form.nombre} onChange={set("nombre")}
+                    style={inputStyle}
+                    onFocus={(e) => { e.target.style.borderColor = "var(--blue)"; }}
+                    onBlur={(e) => { e.target.style.borderColor = errors.nombre ? "#ef4444" : "rgba(255,255,255,0.12)"; }}
+                  />
+                  {errors.nombre && <p style={{ fontSize: "0.7rem", color: "#ef4444", marginTop: "0.375rem" }}>{errors.nombre}</p>}
+                </div>
+
+                {/* Email o WhatsApp */}
+                <div>
+                  <label style={labelStyle}>Email o WhatsApp <span style={{ color: "var(--blue)" }}>*</span></label>
+                  <input
+                    type="text" value={form.contacto} onChange={set("contacto")}
+                    placeholder="hola@mail.com o +54 9 221..."
+                    style={{ ...inputStyle, color: form.contacto ? "var(--white)" : undefined }}
+                    onFocus={(e) => { e.target.style.borderColor = "var(--blue)"; }}
+                    onBlur={(e) => { e.target.style.borderColor = errors.contacto ? "#ef4444" : "rgba(255,255,255,0.12)"; }}
+                  />
+                  {errors.contacto && <p style={{ fontSize: "0.7rem", color: "#ef4444", marginTop: "0.375rem" }}>{errors.contacto}</p>}
+                </div>
+
+                {/* Servicio */}
+                <div>
+                  <label style={labelStyle}>¿Qué buscás? <span style={{ color: "var(--blue)" }}>*</span></label>
+                  <select
+                    value={form.servicio} onChange={set("servicio")}
+                    style={{ ...inputStyle, appearance: "none", cursor: "pointer", backgroundColor: "#0d0d0d" }}
+                    onFocus={(e) => { e.target.style.borderColor = "var(--blue)"; }}
+                    onBlur={(e) => { e.target.style.borderColor = errors.servicio ? "#ef4444" : "rgba(255,255,255,0.12)"; }}
+                  >
+                    <option value="" disabled>Elegí un servicio</option>
+                    {SERVICIOS.map((s) => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                  {errors.servicio && <p style={{ fontSize: "0.7rem", color: "#ef4444", marginTop: "0.375rem" }}>{errors.servicio}</p>}
+                </div>
+
+                {/* Mensaje */}
+                <div>
+                  <label style={labelStyle}>Mensaje <span style={{ fontSize: "0.65rem", color: "var(--gray-text)" }}>(opcional)</span></label>
+                  <textarea
+                    value={form.mensaje} onChange={set("mensaje")} rows={3}
+                    style={{ ...inputStyle, resize: "vertical" }}
+                    onFocus={(e) => { e.target.style.borderColor = "var(--blue)"; }}
+                    onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.12)"; }}
+                  />
+                </div>
+
+                <button type="submit" disabled={status === "sending"}
+                  style={{ padding: "0.875rem 1.75rem", backgroundColor: "var(--blue)", color: "var(--white)", border: "none", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", cursor: status === "sending" ? "not-allowed" : "pointer", fontFamily: "inherit", opacity: status === "sending" ? 0.7 : 1 }}>
+                  {status === "sending" ? "Enviando..." : "Enviar mensaje →"}
+                </button>
+
+                {status === "error" && (
+                  <p style={{ fontSize: "0.8rem", color: "#ff6b6b", textAlign: "center" }}>
+                    Algo falló. Escribime por WhatsApp directamente.
+                  </p>
+                )}
+              </form>
+            )}
+
+            {/* Info rows below form */}
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", marginTop: "1.5rem" }}>
+              {rows.map((row) => (
+                <div key={row.label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1rem 0", borderBottom: "1px solid rgba(255,255,255,0.08)", gap: "1rem" }}>
+                  <span style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gray-text)", flexShrink: 0 }}>{row.label}</span>
+                  {row.href ? (
+                    <a href={row.href} target={row.href.startsWith("http") ? "_blank" : undefined} rel={row.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      style={{ fontSize: "0.8rem", fontWeight: 500, color: "var(--white)", textDecoration: "none", transition: "color 0.2s", textAlign: "right" }}
+                      onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "var(--blue)"; }}
+                      onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "var(--white)"; }}>
+                      {row.value}
+                    </a>
+                  ) : (
+                    <span style={{ fontSize: "0.8rem", color: "var(--white)", textAlign: "right" }}>{row.value}</span>
+                  )}
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
@@ -90,6 +252,7 @@ export default function Contact() {
           .contact-grid { grid-template-columns: 1fr 1fr !important; }
           .contact-btns { flex-direction: row !important; flex-wrap: wrap !important; }
         }
+        select option { background-color: #0d0d0d; color: #f5f5f0; }
       `}</style>
     </section>
   );
