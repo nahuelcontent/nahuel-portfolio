@@ -61,6 +61,68 @@ export default function CreativeDirection() {
           ))}
         </div>
 
+        {/* Clients */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+          style={{ marginBottom: "4rem" }}>
+          <p style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gray-text)", marginBottom: "2rem" }}>
+            // MARCAS QUE CONFÍAN
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1px", backgroundColor: "rgba(255,255,255,0.05)" }} className="clients-grid">
+
+            {/* Apolo Centro Capilar */}
+            <a href="https://www.instagram.com/apolo.centrocapilar/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <div style={{ backgroundColor: "#0a0a0a", padding: "1.75rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1.5rem", transition: "background-color 0.25s", cursor: "pointer" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#111"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#0a0a0a"; }}>
+                <div>
+                  <p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--blue)", marginBottom: "0.375rem" }}>Implante Capilar · CABA</p>
+                  <h4 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.4rem", letterSpacing: "0.04em", color: "var(--white)", lineHeight: 1 }}>Apolo Centro Capilar</h4>
+                  <p style={{ fontSize: "0.75rem", color: "var(--gray-text)", marginTop: "0.375rem" }}>Identidad visual + estrategia de contenido</p>
+                </div>
+                <div style={{ textAlign: "right", flexShrink: 0 }}>
+                  <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.8rem", color: "var(--white)", lineHeight: 1 }}>6.9K</p>
+                  <p style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-text)" }}>seguidores</p>
+                </div>
+              </div>
+            </a>
+
+            {/* Casa Azul */}
+            <a href="https://www.instagram.com/casaazul___/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <div style={{ backgroundColor: "#0a0a0a", padding: "1.75rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1.5rem", transition: "background-color 0.25s", cursor: "pointer" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#111"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#0a0a0a"; }}>
+                <div>
+                  <p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--blue)", marginBottom: "0.375rem" }}>Café & Cowork · San Juan</p>
+                  <h4 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.4rem", letterSpacing: "0.04em", color: "var(--white)", lineHeight: 1 }}>Casa Azul Cafe Art & Co.</h4>
+                  <p style={{ fontSize: "0.75rem", color: "var(--gray-text)", marginTop: "0.375rem" }}>Dirección creativa + contenido orgánico</p>
+                </div>
+                <div style={{ textAlign: "right", flexShrink: 0 }}>
+                  <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.8rem", color: "var(--white)", lineHeight: 1 }}>11.5K</p>
+                  <p style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-text)" }}>seguidores</p>
+                </div>
+              </div>
+            </a>
+
+            {/* Voltia */}
+            <a href="https://www.instagram.com/voltia.sanjuan/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <div style={{ backgroundColor: "#0a0a0a", padding: "1.75rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1.5rem", transition: "background-color 0.25s", cursor: "pointer" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#111"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#0a0a0a"; }}>
+                <div>
+                  <p style={{ fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--blue)", marginBottom: "0.375rem" }}>Movilidad Eléctrica · San Juan</p>
+                  <h4 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.4rem", letterSpacing: "0.04em", color: "var(--white)", lineHeight: 1 }}>Voltia San Juan</h4>
+                  <p style={{ fontSize: "0.75rem", color: "var(--gray-text)", marginTop: "0.375rem" }}>Identidad de marca + lanzamiento digital</p>
+                </div>
+                <div style={{ textAlign: "right", flexShrink: 0 }}>
+                  <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.8rem", color: "var(--white)", lineHeight: 1 }}>153</p>
+                  <p style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-text)" }}>seguidores</p>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </motion.div>
+
         {/* CTAs */}
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}
           style={{ display: "flex", gap: "1.5rem", alignItems: "center", flexWrap: "wrap" }}>
@@ -76,7 +138,7 @@ export default function CreativeDirection() {
 
       <style>{`
         @media (min-width: 900px) { .cd-header { grid-template-columns: 1fr 2fr !important; } }
-        @media (min-width: 768px) { .cd-grid { grid-template-columns: 1fr 1fr !important; } }
+        @media (min-width: 768px) { .cd-grid { grid-template-columns: 1fr 1fr !important; } .clients-grid { grid-template-columns: 1fr 1fr 1fr !important; } }
         .cd-card:hover .cd-line { width: 100% !important; }
       `}</style>
     </section>
