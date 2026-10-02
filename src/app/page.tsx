@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import CreativeDirection from "@/components/CreativeDirection";
 import UGCSection from "@/components/UGCSection";
+import CafecitoSection from "@/components/CafecitoSection";
 import Projects from "@/components/Projects";
 import AlphaStudioForm from "@/components/AlphaStudioForm";
 import Contact from "@/components/Contact";
@@ -19,6 +20,7 @@ export default function Home() {
         <CreativeDirection />
         <UGCSection />
         <Marquee />
+        <CafecitoSection />
         <Projects />
         <AlphaStudioForm />
         <Contact />
