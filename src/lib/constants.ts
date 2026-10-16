@@ -3,10 +3,11 @@
 export const PERSONAL = {
   name: "NAHUEL",
   fullName: "Nahuel Recabarren",
-  title: "Creative Director · UGC Creator",
+  title: "Director Creativo · Buenos Aires",
   email: "nahuelcontent@gmail.com",
   phone: "+54 9 221 595 6501",
-  whatsapp: "5492215956501", // without + for wa.me link
+  whatsapp: "5492215956501",
+  whatsappUrl: "https://wa.me/5492215956501?text=Hola%20Nahuel%2C%20vi%20tu%20web%20y%20quiero%20hablar%20sobre%20mi%20marca",
   location: "Buenos Aires, Argentina",
   linkedinHandle: "nahuel-recabarren",
   linkedinUrl: "https://www.linkedin.com/in/nahuel-recabarren",

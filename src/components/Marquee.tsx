@@ -1,6 +1,6 @@
 "use client";
 
-const words = ["Creative Direction", "Brand Positioning", "UGC Content", "Content Strategy", "Visual Direction", "Performance Content", "Alpha Studio", "Creative Direction", "Brand Positioning", "UGC Content", "Content Strategy", "Visual Direction", "Performance Content", "Alpha Studio"];
+const words = ["Dirección creativa", "Estrategia", "Posicionamiento", "Guion", "Dirección de rodaje", "Edición", "Dirección creativa", "Estrategia", "Posicionamiento", "Guion", "Dirección de rodaje", "Edición"];
 
 export default function Marquee() {
   return (

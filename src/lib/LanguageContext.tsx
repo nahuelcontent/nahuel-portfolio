@@ -12,7 +12,7 @@ interface LangCtx {
 const LanguageContext = createContext<LangCtx | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("en");
+  const [lang, setLang] = useState<Lang>("es");
   const toggle = () => setLang((l) => (l === "en" ? "es" : "en"));
 
   return (

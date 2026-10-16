@@ -2,11 +2,12 @@ import { LanguageProvider } from "@/lib/LanguageContext";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
-import CreativeDirection from "@/components/CreativeDirection";
-import UGCSection from "@/components/UGCSection";
-import CafecitoSection from "@/components/CafecitoSection";
-import Projects from "@/components/Projects";
-import AlphaStudioForm from "@/components/AlphaStudioForm";
+import ElProblema from "@/components/ElProblema";
+import QueHago from "@/components/QueHago";
+import Casos from "@/components/Casos";
+import ComoTrabajo from "@/components/ComoTrabajo";
+import DosFormas from "@/components/DosFormas";
+import SobreMi from "@/components/SobreMi";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -17,12 +18,12 @@ export default function Home() {
         <Navbar />
         <Hero />
         <Marquee />
-        <CreativeDirection />
-        <UGCSection />
-        <Marquee />
-        <CafecitoSection />
-        <Projects />
-        <AlphaStudioForm />
+        <ElProblema />
+        <QueHago />
+        <Casos />
+        <ComoTrabajo />
+        <DosFormas />
+        <SobreMi />
         <Contact />
         <Footer />
       </main>

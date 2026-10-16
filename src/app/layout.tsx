@@ -3,23 +3,19 @@ import "./globals.css";
 import Cursor from "@/components/Cursor";
 
 export const metadata: Metadata = {
-  title: "Nahuel Recabarren — Director Creativo & Agencia de Contenido | Buenos Aires",
-  description: "Director creativo y creador de contenido UGC en Buenos Aires. Estrategia de contenido, producción de reels, dirección creativa y posicionamiento de marca para negocios y marcas personales en Argentina.",
+  title: "Nahuel Recabarren — Dirección creativa para marcas | Buenos Aires",
+  description: "Director creativo en Buenos Aires. Estrategia de contenido, posicionamiento y dirección de rodaje para clínicas, cafés y empresas.",
   keywords: [
     "director creativo Buenos Aires",
-    "agencia de contenido Argentina",
-    "creación de contenido Buenos Aires",
-    "UGC creator Argentina",
     "dirección creativa marcas",
-    "estrategia de contenido redes sociales",
-    "producción de reels Buenos Aires",
-    "marketing de contenidos Argentina",
+    "estrategia de contenido",
     "posicionamiento de marca",
-    "contenido para Instagram Argentina",
-    "Alpha Studio agencia contenido",
-    "creador de contenido UGC",
-    "agencia marketing digital Buenos Aires",
+    "dirección de rodaje Buenos Aires",
+    "dirección creativa clínicas",
+    "dirección creativa cafés",
+    "dirección creativa empresas Argentina",
     "Nahuel Recabarren",
+    "NahuelContent",
   ],
   authors: [{ name: "Nahuel Recabarren", url: "https://nahuelcontent.store" }],
   creator: "Nahuel Recabarren",
@@ -28,17 +24,17 @@ export const metadata: Metadata = {
     canonical: "https://nahuelcontent.store",
   },
   openGraph: {
-    title: "Nahuel Recabarren — Director Creativo & Agencia de Contenido",
-    description: "Director creativo y creador de contenido UGC en Buenos Aires. Estrategia, producción y dirección creativa para marcas que quieren posicionarse con intención.",
+    title: "Nahuel Recabarren — Dirección creativa para marcas | Buenos Aires",
+    description: "Director creativo en Buenos Aires. Estrategia de contenido, posicionamiento y dirección de rodaje para clínicas, cafés y empresas.",
     type: "website",
     url: "https://nahuelcontent.store",
-    siteName: "Nahuel Recabarren · NahuelContent",
+    siteName: "Nahuel Recabarren",
     locale: "es_AR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nahuel Recabarren — Director Creativo & Agencia de Contenido",
-    description: "Director creativo y creador de contenido UGC en Buenos Aires. Estrategia, producción y dirección creativa para marcas.",
+    title: "Nahuel Recabarren — Dirección creativa para marcas",
+    description: "Director creativo en Buenos Aires. Estrategia, posicionamiento y dirección de rodaje para marcas.",
     creator: "@nahuelcontent",
   },
   robots: {
@@ -66,7 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "Person",
               name: "Nahuel Recabarren",
               jobTitle: "Director Creativo",
-              description: "Director creativo y creador de contenido UGC en Buenos Aires. Fundador de Alpha Studio, agencia de contenido y dirección creativa para marcas en Argentina.",
+              description: "Director creativo en Buenos Aires. Estrategia de contenido, posicionamiento y dirección de rodaje para clínicas, cafés y empresas.",
               url: "https://nahuelcontent.store",
               sameAs: [
                 "https://www.instagram.com/nahuelcontent/",
@@ -80,53 +76,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               knowsAbout: [
                 "Dirección Creativa",
                 "Estrategia de Contenido",
-                "Creación de Contenido",
-                "UGC",
-                "Marketing Digital",
-                "Producción Audiovisual",
                 "Posicionamiento de Marca",
+                "Dirección de Rodaje",
+                "Producción Audiovisual",
               ],
               worksFor: {
                 "@type": "Organization",
                 name: "Alpha Studio",
                 url: "https://alpha-studio-bice.vercel.app",
-                description: "Agencia de contenido y dirección creativa en Buenos Aires y La Plata.",
               },
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: "Alpha Studio",
-              description: "Agencia de creación de contenido, dirección creativa y estrategia de marketing digital en Buenos Aires y La Plata, Argentina.",
-              url: "https://nahuelcontent.store",
-              founder: {
-                "@type": "Person",
-                name: "Nahuel Recabarren",
-              },
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Buenos Aires",
-                addressRegion: "Buenos Aires",
-                addressCountry: "AR",
-              },
-              areaServed: ["Buenos Aires", "La Plata", "Argentina"],
-              serviceType: [
-                "Dirección Creativa",
-                "Estrategia de Contenido",
-                "Producción de Reels",
-                "UGC Creator",
-                "Marketing Digital",
-                "Fotografía de Marca",
-              ],
-              sameAs: [
-                "https://www.instagram.com/nahuelcontent/",
-                "https://alpha-studio-bice.vercel.app",
-              ],
             }),
           }}
         />

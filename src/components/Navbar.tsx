@@ -9,9 +9,9 @@ export default function Navbar() {
   const n = tr.nav;
 
   const links = [
-    { label: n.creativeDirection, href: "#creative-direction" },
-    { label: n.ugc, href: "#ugc" },
-    { label: n.projects, href: "#projects" },
+    { label: n.creativeDirection, href: "#que-hago" },
+    { label: n.casos, href: "#casos" },
+    { label: n.comoTrabajo, href: "#como-trabajo" },
     { label: n.contact, href: "#contact" },
   ];
 
@@ -61,7 +61,7 @@ export default function Navbar() {
           </AnimatePresence>
         </button>
 
-        <a href={`https://wa.me/${PERSONAL.whatsapp}`} target="_blank" rel="noopener noreferrer"
+        <a href={PERSONAL.whatsappUrl} target="_blank" rel="noopener noreferrer"
           style={{ display: "inline-flex", alignItems: "center", padding: "0.5rem 1.1rem", fontSize: "0.6rem", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", backgroundColor: "var(--blue)", color: "var(--white)", textDecoration: "none", transition: "background-color 0.2s" }}
           className="cta-desktop"
           onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a2de0"; }}
