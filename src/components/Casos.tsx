@@ -136,8 +136,8 @@ export default function Casos() {
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           style={{ marginTop: "4rem", border: "1px solid rgba(255,255,255,0.08)", padding: "2rem", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
           <div>
-            <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.6rem", color: "var(--white)", letterSpacing: "0.04em", marginBottom: "0.25rem" }}>Voltia San Juan</p>
-            <p style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gray-text)" }}>Emprendimiento gastronómico · San Juan</p>
+            <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.6rem", color: "var(--white)", letterSpacing: "0.04em", marginBottom: "0.25rem" }}>Voltia</p>
+            <p style={{ fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gray-text)" }}>Movilidad eléctrica · San Juan</p>
           </div>
           <a href="https://www.instagram.com/voltia.sanjuan/" target="_blank" rel="noopener noreferrer"
             style={{ fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--blue)", textDecoration: "none", border: "1px solid rgba(39,66,255,0.35)", padding: "0.5rem 1rem", whiteSpace: "nowrap" }}>
