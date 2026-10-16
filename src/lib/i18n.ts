@@ -77,6 +77,13 @@ export const t = {
           link: "https://alpha-studio-bice.vercel.app/",
           cta: "Inquire",
         },
+        {
+          tag: "Alpha Studio IA",
+          title: "Brand identity with AI",
+          desc: "We build your brand from scratch — name, visual identity and content — using AI. Faster, more accessible, same strategic direction.",
+          link: "/alpha-studio#ia",
+          cta: "See projects",
+        },
       ],
     },
     sobreMi: {
@@ -202,6 +209,13 @@ export const t = {
           desc: "Todo lo anterior, más la producción del contenido.",
           link: "https://alpha-studio-bice.vercel.app/",
           cta: "Consultar",
+        },
+        {
+          tag: "Alpha Studio IA",
+          title: "Identidad y contenido con IA",
+          desc: "Creamos tu marca desde cero — nombre, identidad visual y contenido — usando IA. Más rápido, más accesible, con la misma dirección estratégica.",
+          link: "/alpha-studio#ia",
+          cta: "Ver proyectos",
         },
       ],
     },

@@ -22,21 +22,60 @@ const internalProjects = [
   {
     tag: "Marketing",
     name: "InSync",
-    desc: "Tu equipo de marketing externo. Meta Ads, landing pages y dirección creativa bajo un mismo techo. Facturación mensual, sin contrato largo.",
+    desc: "Tu equipo de marketing externo. Meta Ads, landing pages y dirección creativa bajo un mismo techo.",
     url: "https://in-sync.vercel.app/",
   },
   {
     tag: "Training",
     name: "ProJump",
-    desc: "Programa de salto vertical de 6 semanas para jugadores de vóley y básquet. Fuerza, potencia y pliometría estructurada.",
+    desc: "Programa de salto vertical de 6 semanas para jugadores de vóley y básquet.",
     url: "https://projump.vercel.app/",
   },
 ];
 
-const labelStyle = {
-  fontSize: "0.6rem" as const,
+const iaProjects = [
+  {
+    name: "Sellito",
+    desc: "Fidelización para cafés. Sellito a sellito, vuelven.",
+    rubro: "Fidelización · Cafés",
+    url: "https://www.instagram.com/sellito.ar/",
+  },
+  {
+    name: "Invia",
+    desc: "Invitaciones digitales que también organizan tu evento. De cero a invitación en 15 minutos.",
+    rubro: "Eventos · Digital",
+    url: "https://www.instagram.com/hola.invia/",
+  },
+  {
+    name: "ALYA",
+    desc: "Cuidado profesional de perros en su propia casa. Paseos, visitas y estadías.",
+    rubro: "Pets · Buenos Aires",
+    url: "https://www.instagram.com/alyacare.ar/",
+  },
+  {
+    name: "Saldito",
+    desc: "Gift cards con tu marca que se usan de a poco. Convertí tu café en un regalo.",
+    rubro: "Gift Cards · Cafés",
+    url: "https://www.instagram.com/saldito.ar/",
+  },
+  {
+    name: "Huella Pura",
+    desc: "Snacks caseros, sanos y naturales para perros. Hechos a mano en Argentina.",
+    rubro: "Pet food · Argentina",
+    url: "https://www.instagram.com/huellapura.ar/",
+  },
+  {
+    name: "Mossé Club",
+    desc: "Un club para amantes de las plantas. Botánica, inspiración y vida entre plantas.",
+    rubro: "Comunidad · Botánica",
+    url: "https://www.instagram.com/mosse.club/",
+  },
+];
+
+const labelStyle: React.CSSProperties = {
+  fontSize: "0.6rem",
   letterSpacing: "0.16em",
-  textTransform: "uppercase" as const,
+  textTransform: "uppercase",
   color: "var(--gray-text)",
   marginBottom: "1.25rem",
   display: "block",
@@ -64,9 +103,7 @@ export default function AlphaStudioPage() {
 
         {/* Hero */}
         <section style={{ paddingTop: "10rem", paddingBottom: "6rem", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            style={labelStyle}>
+          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} style={labelStyle}>
             Agencia · Buenos Aires
           </motion.p>
           <div style={{ overflow: "hidden" }}>
@@ -76,16 +113,14 @@ export default function AlphaStudioPage() {
               ALPHA<br /><span style={{ color: "var(--blue)" }}>STUDIO.</span>
             </motion.h1>
           </div>
-          <motion.p
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.4 }}
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.4 }}
             style={{ fontSize: "1rem", lineHeight: 1.75, color: "var(--gray-text)", maxWidth: "520px", marginBottom: "2.5rem" }}>
             Dirección creativa y producción para marcas que quieren posicionarse con intención. No solo publicar.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }}
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }}
             style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
             <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">Hablemos →</a>
-            <a href="#servicios" className="btn-secondary">Ver servicios</a>
+            <a href="#ia" className="btn-secondary">Ver proyectos con IA</a>
           </motion.div>
         </section>
 
@@ -112,17 +147,46 @@ export default function AlphaStudioPage() {
           </div>
         </section>
 
-        {/* Proyectos internos */}
-        <section id="proyectos" style={{ paddingTop: "5rem", paddingBottom: "5rem", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-          <span style={labelStyle}>Proyectos internos</span>
+        {/* Alpha Studio IA */}
+        <section id="ia" style={{ paddingTop: "5rem", paddingBottom: "5rem", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.25rem" }}>
+            <span style={{ ...labelStyle, marginBottom: 0 }}>Alpha Studio IA</span>
+            <span style={{ fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--white)", backgroundColor: "#7c3aed", padding: "0.2rem 0.6rem" }}>IA</span>
+          </div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
             style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.02em", color: "var(--white)", marginBottom: "0.75rem" }}>
+            MARCAS CREADAS CON IA
+          </motion.h2>
+          <p style={{ fontSize: "0.875rem", color: "var(--gray-text)", lineHeight: 1.7, maxWidth: "520px", marginBottom: "3rem" }}>
+            Nombre, identidad visual y contenido generado con inteligencia artificial y dirección estratégica. Más rápido y más accesible que la producción tradicional — sin perder criterio.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }} className="as-ia-grid">
+            {iaProjects.map((p, i) => (
+              <motion.a key={i} href={p.url} target="_blank" rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.07 }}
+                style={{ border: "1px solid rgba(124,58,237,0.25)", padding: "1.75rem", textDecoration: "none", display: "block", transition: "border-color 0.2s, background-color 0.2s" }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(124,58,237,0.6)"; e.currentTarget.style.backgroundColor = "rgba(124,58,237,0.04)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(124,58,237,0.25)"; e.currentTarget.style.backgroundColor = "transparent"; }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
+                  <span style={{ fontSize: "0.55rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#a78bfa" }}>{p.rubro}</span>
+                  <span style={{ fontSize: "0.7rem", color: "var(--gray-text)" }}>↗</span>
+                </div>
+                <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.6rem", color: "var(--white)", letterSpacing: "0.04em", marginBottom: "0.5rem" }}>{p.name}</h3>
+                <p style={{ fontSize: "0.82rem", color: "var(--gray-text)", lineHeight: 1.6 }}>{p.desc}</p>
+              </motion.a>
+            ))}
+          </div>
+        </section>
+
+        {/* Proyectos internos tradicionales */}
+        <section id="proyectos" style={{ paddingTop: "5rem", paddingBottom: "5rem", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+          <span style={labelStyle}>Otros proyectos</span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+            style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.02em", color: "var(--white)", marginBottom: "3rem" }}>
             MÁS ALLÁ DE LA DIRECCIÓN
           </motion.h2>
-          <p style={{ fontSize: "0.875rem", color: "var(--gray-text)", lineHeight: 1.7, maxWidth: "480px", marginBottom: "3rem" }}>
-            Dentro de Alpha Studio desarrollamos proyectos propios para cubrir necesidades que el mercado no resolvía bien.
-          </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }} className="as-projects-grid">
             {internalProjects.map((p, i) => (
               <motion.a key={i} href={p.url} target="_blank" rel="noopener noreferrer"
@@ -148,8 +212,7 @@ export default function AlphaStudioPage() {
             style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2.5rem, 6vw, 4.5rem)", letterSpacing: "0.02em", color: "var(--white)", marginBottom: "1.25rem" }}>
             ¿TRABAJAMOS JUNTOS?
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
             style={{ fontSize: "0.9rem", color: "var(--gray-text)", marginBottom: "2rem" }}>
             Contanos en qué está tu marca y vemos cómo ayudarte.
           </motion.p>
@@ -171,6 +234,7 @@ export default function AlphaStudioPage() {
         @media (min-width: 768px) {
           .as-services-grid { grid-template-columns: 1fr 1fr !important; }
           .as-projects-grid { grid-template-columns: repeat(3, 1fr) !important; }
+          .as-ia-grid { grid-template-columns: repeat(3, 1fr) !important; }
         }
       `}</style>
     </div>
