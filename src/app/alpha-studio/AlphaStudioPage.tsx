@@ -27,9 +27,9 @@ const internalProjects = [
   },
   {
     tag: "Training",
-    name: "ProJump",
-    desc: "Programa de salto vertical de 6 semanas para jugadores de vóley y básquet.",
-    url: "https://projump.vercel.app/",
+    name: "Alpha Athlete",
+    desc: "Programas de entrenamiento para deportistas. Fuerza, potencia y rendimiento — incluye ProJump.",
+    url: "https://nahuelvolleyball-two.vercel.app/",
   },
 ];
 
