@@ -33,8 +33,9 @@ export default function DosFormas() {
               <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", color: "var(--white)", letterSpacing: "0.03em" }}>{card.title}</h3>
               <p style={{ fontSize: "0.875rem", color: "var(--gray-text)", lineHeight: 1.7, flex: 1 }}>{card.desc}</p>
               <a
-                href={card.tag === "Alpha Studio" ? card.link : PERSONAL.whatsappUrl}
-                target="_blank" rel="noopener noreferrer"
+                href={card.tag === "Alpha Studio" ? "/alpha-studio" : PERSONAL.whatsappUrl}
+                target={card.tag === "Alpha Studio" ? undefined : "_blank"}
+                rel={card.tag === "Alpha Studio" ? undefined : "noopener noreferrer"}
                 className={i === 0 ? "btn-primary" : "btn-secondary"}
                 style={{ display: "inline-block", textAlign: "center" }}>
                 {card.cta}
