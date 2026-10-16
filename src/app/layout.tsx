@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Cursor from "@/components/Cursor";
 
 export const metadata: Metadata = {
   title: "Nahuel Recabarren — Dirección creativa para marcas | Buenos Aires",
@@ -90,7 +89,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <Cursor />
         {children}
       </body>
     </html>
