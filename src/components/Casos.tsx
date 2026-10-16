@@ -145,6 +145,33 @@ export default function Casos() {
           </a>
         </motion.div>
 
+        {/* También trabajé con */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+          style={{ marginTop: "4rem", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "3rem" }}>
+          <p style={{ fontSize: "0.6rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--gray-text)", marginBottom: "2rem" }}>
+            También trabajé con
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+            {[
+              { name: "Tierras Negras", rubro: "Eventos & Restó", url: "https://www.instagram.com/tneventosyresto/" },
+              { name: "GRO Grupo Odontológico", rubro: "Odontología · San Juan", url: "https://www.instagram.com/gro.grupodontologico/" },
+              { name: "UVT Voley", rubro: "Club deportivo · San Juan", url: "https://www.instagram.com/voley_uvt/" },
+              { name: "Modo Gris", rubro: "Decoración · San Juan", url: "https://www.instagram.com/modogris.deco/" },
+              { name: "Shark Ropa Deportiva", rubro: "Indumentaria · San Juan", url: "https://www.instagram.com/shark_ropadeportiva/" },
+              { name: "Lusiva Studio", rubro: "Peluquería · San Juan", url: "https://www.instagram.com/lusivapeluqueria/" },
+            ].map((cliente) => (
+              <a key={cliente.name} href={cliente.url} target="_blank" rel="noopener noreferrer"
+                style={{ padding: "0.75rem 1.25rem", border: "1px solid rgba(255,255,255,0.08)", textDecoration: "none", transition: "border-color 0.2s" }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(39,66,255,0.4)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"; }}>
+                <p style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--white)", marginBottom: "0.2rem" }}>{cliente.name}</p>
+                <p style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-text)" }}>{cliente.rubro}</p>
+              </a>
+            ))}
+          </div>
+        </motion.div>
+
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
