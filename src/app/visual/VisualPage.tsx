@@ -61,8 +61,17 @@ const IconImage = () => (
 );
 
 // ─── Before/After Slider ──────────────────────────────────────────────────────
-function BeforeAfterSlider({ index, label }: { index: number; label: string }) {
-  const [value, setValue] = useState(50);
+function BeforeAfterSlider({
+  label,
+  antes,
+  despues,
+}: {
+  label: string;
+  antes: string | null;
+  despues: string;
+}) {
+  const [value, setValue] = useState(antes ? 50 : 100);
+  const hasAntes = antes !== null;
 
   return (
     <div
@@ -76,35 +85,15 @@ function BeforeAfterSlider({ index, label }: { index: number; label: string }) {
       }}
     >
       {/* ANTES */}
-      <div style={{ position: "absolute", inset: 0 }}>
-        <img
-          src={`/images/visual/antes-${index}.jpg`}
-          alt={`Antes — ${label}`}
-          loading="lazy"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-        />
-        {/* fallback placeholder cuando no hay imagen */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "#181818",
-          }}
-          aria-hidden
-        >
-          <span
-            style={{
-              fontFamily: "monospace",
-              fontSize: "0.65rem",
-              color: "rgba(255,255,255,0.2)",
-            }}
-          >
-            antes-{index}.jpg
-          </span>
-        </div>
+      <div style={{ position: "absolute", inset: 0, background: "#181818", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        {antes && (
+          <img
+            src={antes}
+            alt={`Antes — ${label}`}
+            loading="lazy"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", position: "absolute", inset: 0 }}
+          />
+        )}
       </div>
 
       {/* DESPUÉS (recortado) */}
@@ -116,93 +105,78 @@ function BeforeAfterSlider({ index, label }: { index: number; label: string }) {
         }}
       >
         <img
-          src={`/images/visual/despues-${index}.jpg`}
+          src={despues}
           alt={`Después — ${label}`}
           loading="lazy"
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
+      </div>
+
+      {/* Línea divisoria — solo si hay antes */}
+      {hasAntes && (
         <div
           style={{
             position: "absolute",
-            inset: 0,
+            top: 0,
+            bottom: 0,
+            left: `${value}%`,
+            width: "2px",
+            background: "white",
+            transform: "translateX(-50%)",
+            pointerEvents: "none",
+            zIndex: 2,
+          }}
+        />
+      )}
+
+      {/* Handle — solo si hay antes */}
+      {hasAntes && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: `${value}%`,
+            transform: "translate(-50%, -50%)",
+            width: "44px",
+            height: "44px",
+            borderRadius: "50%",
+            background: "white",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.5)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "#0a1228",
+            pointerEvents: "none",
+            zIndex: 3,
           }}
           aria-hidden
         >
-          <span
-            style={{
-              fontFamily: "monospace",
-              fontSize: "0.65rem",
-              color: "rgba(39,66,255,0.4)",
-            }}
-          >
-            despues-{index}.jpg
-          </span>
+          <svg width="18" height="10" viewBox="0 0 18 10" fill="none">
+            <path d="M1 5H17M1 5L4.5 2M1 5L4.5 8M17 5L13.5 2M17 5L13.5 8" stroke="#080808" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
-      </div>
-
-      {/* Línea divisoria */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          left: `${value}%`,
-          width: "2px",
-          background: "white",
-          transform: "translateX(-50%)",
-          pointerEvents: "none",
-          zIndex: 2,
-        }}
-      />
-
-      {/* Handle */}
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: `${value}%`,
-          transform: "translate(-50%, -50%)",
-          width: "44px",
-          height: "44px",
-          borderRadius: "50%",
-          background: "white",
-          boxShadow: "0 2px 12px rgba(0,0,0,0.5)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          pointerEvents: "none",
-          zIndex: 3,
-        }}
-        aria-hidden
-      >
-        <svg width="18" height="10" viewBox="0 0 18 10" fill="none">
-          <path d="M1 5H17M1 5L4.5 2M1 5L4.5 8M17 5L13.5 2M17 5L13.5 8" stroke="#080808" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
+      )}
 
       {/* Labels ANTES / DESPUÉS */}
-      <span
-        style={{
-          position: "absolute",
-          top: "0.875rem",
-          left: "0.875rem",
-          fontSize: "0.5rem",
-          fontWeight: 700,
-          letterSpacing: "0.16em",
-          textTransform: "uppercase",
-          color: "rgba(255,255,255,0.7)",
-          background: "rgba(0,0,0,0.55)",
-          padding: "0.2rem 0.5rem",
-          pointerEvents: "none",
-          zIndex: 2,
-        }}
-      >
-        ANTES
-      </span>
+      {hasAntes && (
+        <span
+          style={{
+            position: "absolute",
+            top: "0.875rem",
+            left: "0.875rem",
+            fontSize: "0.5rem",
+            fontWeight: 700,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.7)",
+            background: "rgba(0,0,0,0.55)",
+            padding: "0.2rem 0.5rem",
+            pointerEvents: "none",
+            zIndex: 2,
+          }}
+        >
+          ANTES
+        </span>
+      )}
       <span
         style={{
           position: "absolute",
@@ -219,7 +193,7 @@ function BeforeAfterSlider({ index, label }: { index: number; label: string }) {
           zIndex: 2,
         }}
       >
-        DESPUÉS
+        {hasAntes ? "DESPUÉS" : "EDITADO"}
       </span>
 
       {/* Etiqueta de rubro */}
@@ -242,36 +216,49 @@ function BeforeAfterSlider({ index, label }: { index: number; label: string }) {
         {label}
       </span>
 
-      {/* Range input transparente — maneja mouse y touch */}
-      <input
-        type="range"
-        min={0}
-        max={100}
-        value={value}
-        onChange={(e) => setValue(Number(e.target.value))}
-        aria-label={`Comparar antes y después — ${label}`}
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          opacity: 0,
-          cursor: "col-resize",
-          zIndex: 10,
-          margin: 0,
-          padding: 0,
-        }}
-      />
+      {/* Range input — solo activo si hay antes */}
+      {hasAntes && (
+        <input
+          type="range"
+          min={0}
+          max={100}
+          value={value}
+          onChange={(e) => setValue(Number(e.target.value))}
+          aria-label={`Comparar antes y después — ${label}`}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            opacity: 0,
+            cursor: "col-resize",
+            zIndex: 10,
+            margin: 0,
+            padding: 0,
+          }}
+        />
+      )}
     </div>
   );
 }
 
 // ─── Datos ────────────────────────────────────────────────────────────────────
 const CASES = [
-  { label: "Café", index: 1 },
-  { label: "Constructora", index: 2 },
-  { label: "Clínica", index: 3 },
-  { label: "Marca personal", index: 4 },
+  {
+    label: "Constructora",
+    antes: "/images/visual/antes-1.jpg",
+    despues: "/images/visual/despues-1.png",
+  },
+  {
+    label: "Café",
+    antes: "/images/visual/antes-2.jpg",
+    despues: "/images/visual/despues-2.png",
+  },
+  {
+    label: "Apolo",
+    antes: null,
+    despues: "/images/visual/despues-3.png",
+  },
 ];
 
 const INCLUDES = [
@@ -443,27 +430,16 @@ export default function VisualPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "0.75rem" }} className="visual-slider-grid">
             {CASES.map((c, i) => (
               <motion.div
-                key={c.index}
+                key={c.label}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
               >
-                <BeforeAfterSlider index={c.index} label={c.label} />
+                <BeforeAfterSlider label={c.label} antes={c.antes} despues={c.despues} />
               </motion.div>
             ))}
           </div>
-
-          <p
-            style={{
-              fontSize: "0.7rem",
-              color: "rgba(138,138,138,0.5)",
-              marginTop: "1.25rem",
-              fontFamily: "monospace",
-            }}
-          >
-            Reemplazá las fotos en <code>public/images/visual/</code> (antes-1.jpg, despues-1.jpg … antes-4.jpg, despues-4.jpg)
-          </p>
         </div>
       </section>
 
@@ -885,6 +861,14 @@ export default function VisualPage() {
         /* Slider: 1 col en mobile, 2 en tablet+ */
         @media (max-width: 480px) {
           .visual-slider-grid { grid-template-columns: 1fr !important; }
+        }
+        /* 3er slider ocupa fila completa en desktop */
+        @media (min-width: 481px) {
+          .visual-slider-grid > *:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            max-width: 340px;
+            margin: 0 auto;
+          }
         }
 
         /* Includes: 2 col mobile → 3 col desktop */
