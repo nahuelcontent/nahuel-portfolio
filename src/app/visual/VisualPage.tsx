@@ -256,7 +256,7 @@ const CASES = [
   },
   {
     label: "Apolo",
-    antes: null,
+    antes: "/images/visual/antes-3.png",
     despues: "/images/visual/despues-3.png",
   },
 ];
