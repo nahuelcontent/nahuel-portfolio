@@ -29,12 +29,14 @@ export const metadata: Metadata = {
     url: "https://nahuelcontent.store",
     siteName: "Nahuel Recabarren",
     locale: "es_AR",
+    images: [{ url: "/images/nahuel-hero.jpg", alt: "Nahuel Recabarren — Director creativo" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nahuel Recabarren — Dirección creativa para marcas",
     description: "Director creativo en Buenos Aires. Estrategia, posicionamiento y dirección de rodaje para marcas.",
     creator: "@nahuelcontent",
+    images: ["/images/nahuel-hero.jpg"],
   },
   robots: {
     index: true,

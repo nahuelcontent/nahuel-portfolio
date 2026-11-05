@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const WA_URL = "https://wa.me/5492215956501?text=Hola%20Nahuel%2C%20vi%20Alpha%20Studio%20y%20quiero%20hablar%20sobre%20mi%20proyecto";
+const WA_URL = "https://wa.me/5491125370623?text=Hola%20Nahuel%2C%20vi%20Alpha%20Studio%20y%20quiero%20hablar%20sobre%20mi%20proyecto";
 
 const services = [
   { n: "01", title: "Dirección creativa", desc: "Concepto, estética e identidad visual para que tu marca sea reconocida de un vistazo." },

@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 
-const PWD = process.env.ADMIN_PASSWORD ?? "nahuel2025";
+const PWD = process.env.ADMIN_PASSWORD;
 
 function auth(req: NextRequest) {
-  return req.headers.get("x-admin-password") === PWD;
+  // Without ADMIN_PASSWORD configured, the admin API is disabled.
+  if (!PWD) return false;
+  const given = req.headers.get("x-admin-password") ?? "";
+  if (given.length !== PWD.length) return false;
+  return timingSafeEqual(Buffer.from(given), Buffer.from(PWD));
 }
 
 function parseLeads(raw: unknown[]): unknown[] {
@@ -57,13 +62,13 @@ export async function DELETE(req: NextRequest) {
 
   try {
     const raw = await redis.lrange("leads", 0, -1);
-    const leads = parseLeads(raw) as Record<string, unknown>[];
-    const filtered = leads.filter((l) => l.id !== id);
+    const parsed = parseLeads(raw) as Record<string, unknown>[];
+    const idx = parsed.findIndex((l) => l.id === id);
+    if (idx === -1) return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 });
 
-    await redis.del("leads");
-    if (filtered.length > 0) {
-      await redis.rpush("leads", ...filtered.map((l) => JSON.stringify(l)));
-    }
+    // Atomic removal of just this entry (no del + rpush window)
+    const original = raw[idx];
+    await redis.lrem("leads", 1, typeof original === "string" ? original : JSON.stringify(original));
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error(err);

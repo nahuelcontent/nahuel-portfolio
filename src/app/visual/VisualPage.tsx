@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
-const WHATSAPP_NUMBER = "5492215956501";
+const WHATSAPP_NUMBER = "5491125370623";
 const WA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20Nahuel%2C%20vengo%20de%20Instagram%20por%20edici%C3%B3n`;
 const IG_URL = "https://www.instagram.com/nahuelvisual/";
 
